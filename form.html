@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="form.css">
+  <title>CP</title>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="content">
+      <p class="content-dealing">
+
+     
+
+      </p>
+    </div>
+    <div class="main">
+      <form class="form">
+        <p class="pageTitle title">SIGN IN FORM</p>
+        <p class="secondaryTitle title">Providing a one-stop solution</p>
+
+        <input type="text" class="name formEntry" id="name" placeholder="Name" />
+        <input type="text" class="email formEntry" id="email" placeholder="Email" />
+        <input type="text" class="name formEntry" id="name" placeholder="Contact No" />
+        <input type="text" class="name formEntry" id="name" placeholder="Reg No." />
+        <!-- <p class="prog">Programme
+          <input type="radio" class="" name="prog" value="btech">UG
+          <input type="radio" class="" name="prog" value="icd">ICD
+        </p>
+        <p class="year">YEAR
+          <input type="radio" class="radio" name="YEAR" value="btech">FIRST
+          <input type="radio" class="radio" name="YEAR" value="icd">SECOND
+          <input type="radio" class="radio" name="YEAR" value="btech">THIRD
+        </p>
+        <input type="text" class="name formEntry" id="trade" placeholder="Trade" />
+
+
+        <input type="text" class="name formEntry" id="name" placeholder="10th PERCENTAGE/CGPA" />
+
+        <input type="text" class="name formEntry" id="name" placeholder="12th PERCENTAGE/CGPA" />
+
+        <textarea class="message formEntry" id="feedback" placeholder="WHY SHOULD WE SELECT YOU"></textarea>
+        <button class="file" onclick="document.getElementById('getFile').click()">UPLOAD YOUR PHOTO</button>
+        <input type='file' id="getFile" style="display:none">
+        <button class="file" onclick="document.getElementById('getFile').click()">UPLOAD YOUR RESUME</button>
+        <input type='file' id="getFile" style="display:none"> -->
+
+        <button class="submit formEntry name" id="submit">Submit</button>
+
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js'
+    import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js"
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCrdJVxZBixNQJQ4kR7g_Y7qCdGgpumwlg",
+      authDomain: "fir-frontend2-3f205.firebaseapp.com",
+      databaseURL: "https://fir-frontend2-3f205-default-rtdb.firebaseio.com",
+      projectId: "fir-frontend2-3f205",
+      storageBucket: "fir-frontend2-3f205.appspot.com",
+      messagingSenderId: "263850037373",
+      appId: "1:263850037373:web:84bf82a0e99ff54162a114"
+    };
+    //INTIALISE DATABASE
+    initializeApp(firebaseConfig);//initilise fire base kerne ke liye
+    const root = getDatabase();
+
+      const optionMenu = document.querySelector(".select-menu"),
+      selectBtn = optionMenu.querySelector(".select-btn"),
+      options = optionMenu.querySelectorAll(".option"),
+      sBtn_text = optionMenu.querySelector(".sBtn-text");
+
+    selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));
+
+    options.forEach(option => {
+      option.addEventListener("click", () => {
+        let selectedOption = option.querySelector(".option-text").innerText;
+        sBtn_text.innerText = selectedOption;
+        optionMenu.classList.remove("active");
+      });
+    });
+
+    function writeUserData(x) {
+      set(ref(root, 'users/' + "uId"), {
+        feedback: x
+
+      });
+    }
+
+    submit.addEventListener('click', (e) => {
+      console.log("hey");
+      var username = document.getElementById('name').value;
+      writeUserData(username)
+    });
+
+  </script>
+
+
+</body>
+
+</html>
